@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Explore Primary and Secondary Colors!</title>
+    <style>
+       /* General Styles */
+        body {
+            text-align: center;
+            font-family: "'Comic Sans MS', cursive, sans-serif";
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+
+        header, footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #ffe4e1;
+            background-color: #fff;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #fc3232;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #ff7f50;
+        }
+
+        p, ul {
+            font-size: 1.2em;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        /* Color Classes */
+        .red {
+            background-color: red;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+
+        .orange {
+            background-color: orange;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .purple {
+            background-color: purple;
+        }
+
+        /* Color Circles */
+        .color-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .color-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 15px;
+            border: 2px solid #333;
+        }
+
+        /* Mini-Game Styles */
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .color-options {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .color-options input[type="checkbox"] {
+            display: none;
+        }
+
+        .color-block {
+            width: 80px;
+            height: 80px;
+            border: 2px solid #333;
+            cursor: pointer;
+            transition: transform 0.3s;
+            margin: 10px;
+        }
+
+        .color-block:hover {
+            transform: scale(1.1);
+        }
+
+        .mix-result {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .mix-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 2px solid #333;
+            background-color: #ddd;
+            margin-bottom: 10px;
+            transition: background-color 0.5s;
+        }
+
+        .result-text {
+            font-size: 1.5em;
+            color: #555;
+        }
+
+        .language-button {
+            margin-top: 30px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            background-color: #ff7f50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .language-button:hover {
+            background-color: #ff4500;
+        }
+
+        /* Moving Bar */
+        .moving-bar {
+            width: 100%;
+            background-color: #000000;
+            color: #fff;
+            padding: 10px;
+            font-size: 1.5em;
+            white-space: nowrap;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .moving-text {
+            align-items: center;
+            display: inline-block;
+            animation: moveLeft 20s linear infinite;
+        }
+
+        @keyframes moveLeft {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        @keyframes moveRight {
+            from {
+                transform: translateX(-100%);
+            }
+            to {
+                transform: translateX(100%);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .color-container, .color-options {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .color-circle, .color-block {
+                margin: 10px 0;
+            }
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header>
+        <h1 id="page-title">Explore Primary and Secondary Colors!</h1>
+    </header>
+
+    <div class="moving-bar">
+        <div id="moving-text" class="moving-text">
+            <span id="welcome-message">Welcome to Rashid AlRiyami website to learn Primary Colors</span>
+            <br>
+            <span id="current-date-time"></span>
+        </div>
+    </div>
+
+    <main>
+        <!-- Introduction to primary colors -->
+        <section id="primary-colors">
+            <h2 id="primary-colors-title">Primary Colors</h2>
+            <p id="primary-colors-desc">Red, Yellow, and Blue are primary colors. They cannot be made by mixing other colors.</p>
+            <div class="color-container">
+                <div class="color-circle red"></div>
+                <div class="color-circle yellow"></div>
+                <div class="color-circle blue"></div>
+            </div>
+        </section>
+
+        <!-- Color mixing mini-game -->
+        <section id="color-mixing">
+            <h2 id="color-mixing-title">Color Mixing Mini-Game</h2>
+            <p id="color-mixing-desc">Select up to two colors to see the result!</p>
+            <div class="game-container">
+                <div class="color-options">
+                    <!-- Primary Colors -->
+                    <input type="checkbox" id="red" name="color" value="red">
+                    <label for="red" class="color-block red"></label>
+
+                    <input type="checkbox" id="yellow" name="color" value="yellow">
+                    <label for="yellow" class="color-block yellow"></label>
+
+                    <input type="checkbox" id="blue" name="color" value="blue">
+                    <label for="blue" class="color-block blue"></label>
+                </div>
+                <div class="mix-result">
+                    <div class="mix-circle"></div>
+                    <p class="result-text" id="result-text">Select two colors!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fun facts or summary -->
+        <section id="fun-facts">
+            <h2 id="fun-facts-title">Fun Facts!</h2>
+            <ul>
+                <li id="fact-1"><span class="red-text">Red</span> + <span class="yellow-text">Yellow</span> = <span class="orange-text">Orange</span></li>
+                <li id="fact-2"><span class="red-text">Red</span> + <span class="blue-text">Blue</span> = <span class="purple-text">Purple</span></li>
+                <li id="fact-3"><span class="yellow-text">Yellow</span> + <span class="blue-text">Blue</span> = <span class="green-text">Green</span></li>
+            </ul>
+            <p id="fun-facts-desc">Secondary colors are made by mixing two primary colors.</p>
+        </section>
+
+        <!-- Bonus section -->
+        <section id="everyday-use">
+            <h2 id="everyday-use-title">Colors in Everyday Life</h2>
+            <p id="everyday-use-desc">Artists use colors to create beautiful paintings. Brands use colors to catch your eye!</p>
+        </section>
+
+        <button class="language-button" onclick="toggleLanguage()">Show Website in Arabic</button>
+    </main>
+
+    <footer>
+        <p id="footer-text">Colors make the world beautiful!</p>
+    </footer>
+
+    <script>
+        // JavaScript to handle color selection and update the mix-circle
+        document.addEventListener('DOMContentLoaded', function() {
+            const colorInputs = document.querySelectorAll('input[name="color"]');
+            const mixCircle = document.querySelector('.mix-circle');
+            const resultText = document.querySelector('.result-text');
+
+            colorInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    // Get the selected colors
+                    const selectedColors = Array.from(colorInputs)
+                        .filter(input => input.checked)
+                        .map(input => input.value);
+
+                    // Determine the resulting color based on selected colors
+                    let resultColor = "#ddd";
+                    let resultMessage = "Select two colors!";
+
+                    if (selectedColors.length === 1) {
+                        resultColor = selectedColors[0];
+                        resultMessage = `You selected ${capitalize(selectedColors[0])}!`;
+                    } else if (selectedColors.length === 2) {
+                        if (selectedColors.includes("red") && selectedColors.includes("yellow")) {
+                            resultColor = "orange";
+                            resultMessage = "Red + Yellow = Orange!";
+                        } else if (selectedColors.includes("red") && selectedColors.includes("blue")) {
+                            resultColor = "purple";
+                            resultMessage = "Red + Blue = Purple!";
+                        } else if (selectedColors.includes("yellow") && selectedColors.includes("blue")) {
+                            resultColor = "green";
+                            resultMessage = "Yellow + Blue = Green!";
+                        }
+                    } else if (selectedColors.length === 3) {
+                        resultColor = "brown"; // Mixing all three primary colors results in a muddy brown
+                        resultMessage = "Red + Yellow + Blue = Brown!";
+                    }
+
+                    // Update the mix-circle and result text
+                    mixCircle.style.backgroundColor = resultColor;
+                    resultText.textContent = resultMessage;
+                });
+            });
+
+            // Helper function to capitalize a string
+            function capitalize(str) {
+                return str.charAt(0).toUpperCase() + str.slice(1);
+            }
+        });
+
+        // JavaScript to handle language toggle and moving bar direction
+        function toggleLanguage() {
+            const elements = {
+                'page-title': ['Explore Primary and Secondary Colors!', 'استكشف الألوان الأساسية والثانوية!'],
+                'primary-colors-title': ['Primary Colors', 'الألوان الأساسية'],
+                'primary-colors-desc': ['Red, Yellow, and Blue are primary colors. They cannot be made by mixing other colors.', 'الأحمر والأصفر والأزرق هي ألوان أساسية. لا يمكن تكوينها بمزج ألوان أخرى.'],
+                'color-mixing-title': ['Color Mixing Mini-Game', 'لعبة مزج الألوان'],
+                'color-mixing-desc': ['Select up to two colors to see the result!', 'اختر لونين لرؤية النتيجة!'],
+                'result-text': ['Select two colors!', 'اختر لونين!'],
+                'fun-facts-title': ['Fun Facts!', 'حقائق ممتعة!'],
+                'fact-1': ['Red + Yellow = Orange', 'الأحمر + الأصفر = البرتقالي'],
+                'fact-2': ['Red + Blue = Purple', 'الأحمر + الأزرق = البنفسجي'],
+                'fact-3': ['Yellow + Blue = Green', 'الأصفر + الأزرق = الأخضر'],
+                'fun-facts-desc': ['Secondary colors are made by mixing two primary colors.', 'تتكون الألوان الثانوية من مزج لونين أساسيين.'],
+                'everyday-use-title': ['Colors in Everyday Life', 'الألوان في الحياة اليومية'],
+                'everyday-use-desc': ['Artists use colors to create beautiful paintings. Brands use colors to catch your eye!', 'يستخدم الفنانون الألوان لابتكار لوحات جميلة. تستخدم العلامات التجارية الألوان لجذب انتباهك!'],
+                'footer-text': ['Colors make the world beautiful!', 'الألوان تجعل العالم جميلاً!'],
+                'welcome-message': ['Welcome to Rashid AlRiyami website to learn Primary Colors', 'مرحبًا بكم في موقع راشد الريامي لتعلم الألوان الأساسية'],
+            };
+
+            // Update text content for all elements
+            for (const [id, texts] of Object.entries(elements)) {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.textContent = (element.textContent === texts[0]) ? texts[1] : texts[0];
+                }
+            }
+
+            // Update button text and direction of the page
+            const button = document.querySelector('.language-button');
+            const isArabic = button.textContent === 'Show Website in Arabic';
+            button.textContent = isArabic ? 'عرض الموقع بالإنجليزية' : 'Show Website in Arabic';
+
+            // Update document direction (rtl or ltr)
+            document.documentElement.dir = isArabic ? 'rtl' : 'ltr';
+
+            // Update the moving text direction
+            const movingText = document.getElementById('moving-text');
+            movingText.style.animation = isArabic ? 'moveRight 15s linear infinite' : 'moveLeft 20s linear infinite';
+        }
+
+        // Function to update the current date and time in the moving text bar
+        function updateDateTime() {
+            const dateTimeElement = document.getElementById('current-date-time');
+            const now = new Date();
+
+            // Format the date and time
+            const options = {
+                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+                hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+            };
+            const formattedDateTime = now.toLocaleString('en-US', options);
+
+            // Set the text content to the formatted date and time
+            dateTimeElement.textContent = formattedDateTime;
+        }
+
+        // Call updateDateTime every second to keep the time updated
+        setInterval(updateDateTime, 1000);
+
+        // Initial call to set the time immediately when the page loads
+        updateDateTime();
+
+    </script>
+</body>
+</html>
